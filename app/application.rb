@@ -11,6 +11,15 @@ class Application
       resp.status = 404
     end
  
+ 
+    if req.path.match(/items/)
+ 
+      items_title = req.path.split("/items/").last 
+      song = @@songs.find{|s| s.title == song_title}
+ 
+      resp.write song.artist
+    end
+
     resp.finish
   end
 end
