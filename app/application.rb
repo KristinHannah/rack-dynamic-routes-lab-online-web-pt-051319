@@ -5,20 +5,18 @@ class Application
     req = Rack::Request.new(env)
     @@items = []
  
-    if req.path=="/items"
-      resp.write "You requested the items"
-    else
-      resp.write "Route not found"
-      resp.status = 404
-    end
- 
- 
     if req.path.match(/items/)
- 
       items_title = req.path.split("/items/").last 
       if @@items.include?(items_title)
- 
-      resp.write song.artist
+        resp.write "items_title found"
+      else 
+        resp.write "Route not found"
+        resp.status = 404
+      end 
+    else 
+        resp.write "Route not found"
+        resp.status = 404
+      end 
     end
 
     resp.finish
